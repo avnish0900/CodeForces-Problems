@@ -1,0 +1,88 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int              long long
+#define all(xs)          xs.begin(), xs.end()
+#define rall(xs)         xs.rbegin(), xs.rend()
+#define sz(x)            (int)((x).size())
+#define pb               push_back
+#define ppb              pop_back
+#define pf               push_front
+#define ppf              pop_front
+#define ff               first
+#define ss               second
+#define prec(n)          fixed<<setprecision(n)
+#define debug(x)         cout << (#x) << " is " << (x) << "\n"
+#define debug2(x, y)     cout << #x << "=" << x << "," << #y << "=" << y << "\n"
+#define debug3(x, y,z)   cout << #x << "=" << x << "," << #y << "=" << y << "," << #z << "=" << z << "\n"
+#define debug4(x, y,z,a) cout << #x << "=" << x << "," << #y << "=" << y << "," << #z << "=" << z <<" "<<#a << "=" << a << "\n"
+#define yes              cout<<"YES";
+#define no               cout<<"NO";
+#define ll               cout<<"\n";
+#define INF              2e18
+int gcd(int A,int B){    return (B == 0) ? A : gcd(B, A % B);}
+int lcm(int A,int B){    return A * B / gcd(A, B);}
+const int N=1e5+10;
+const int NN=1e9+10;
+const int mod = 1e9 + 7;
+
+bool comp(pair<int, int>a, pair<int, int>b){
+    if(a.ss == b.ss){
+        return a.ff > b.ff;
+    }
+    else{
+        return a.ss > b.ss;
+    }
+}
+
+void solve(){
+    int a, b, c;
+    cin >> a>>b>>c;
+    
+    int mx = max({a, b, c});
+    if(mx == a){
+        if(mx - b == c){
+            yes;ll;return;
+        }
+    }
+    if(mx == b){
+        if(mx - a == c){
+            yes;ll;return;
+        }
+    }
+    if(mx == c){
+        if(mx - b == a){
+            yes;ll;return;
+        }
+    }
+    if(a==b){
+        if(c%2==0){
+            yes;ll;return;
+        }
+    }
+    if(a==c){
+        if(b%2==0){
+            yes;ll;return;
+        }
+    }
+    if(b==c){
+        if(a%2==0){
+            yes;ll;return;
+        }
+    }
+    no;ll;
+    return;
+}
+
+signed main(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+    ios_base::sync_with_stdio(false), cin.tie(NULL);
+    int t=1;
+    cin>>t;
+    for(int i=0;i<t;i++){
+        // cout<<"Case #"<<i+1<<": "; 
+       solve();
+    }
+}
