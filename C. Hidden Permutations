@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int              long long
+#define all(xs)          xs.begin(), xs.end()
+#define rall(xs)         xs.rbegin(), xs.rend()
+#define sz(x)            (int)((x).size())
+#define pb               push_back
+#define ppb              pop_back
+#define pf               push_front
+#define ppf              pop_front
+#define ff               first
+#define ss               second
+#define prec(n)          fixed<<setprecision(n)
+#define debug(x)         cout << (#x) << " is " << (x) << "\n"
+#define debug2(x, y)     cout << #x << "=" << x << "," << #y << "=" << y << "\n"
+#define debug3(x, y,z)   cout << #x << "=" << x << "," << #y << "=" << y << "," << #z << "=" << z << "\n"
+#define debug4(x, y,z,a) cout << #x << "=" << x << "," << #y << "=" << y << "," << #z << "=" << z <<" "<<#a << "=" << a << "\n"
+#define yes              cout<<"YES";
+#define no               cout<<"NO";
+#define ll               cout<<"\n";
+#define INF              2e18
+int gcd(int A,int B){    return (B == 0) ? A : gcd(B, A % B);}
+int lcm(int A,int B){    return A * B / gcd(A, B);}
+const int mod = 1e9 + 7;
+
+int dfs(int i){
+    cout << "? " << i+1 << "\n" << flush;
+    int x; cin >> x;
+    if(x == 0){
+        exit(0);
+    }
+    x--;
+    return x;
+}
+
+
+void solve(){
+    int n; cin >> n;
+    vector<int> arr(n, -1);
+    for(int i=0; i<n; i++){
+        if(arr[i] == -1){
+            int start = dfs(i);
+            int prev = start;
+            do{
+                int next = dfs(i);
+                arr[prev] = next;
+                prev = next;
+            }while(start != prev);
+        }
+    }
+    cout << "!";
+    for(int i=0; i<n; i++){
+        cout << " " << arr[i] + 1;
+    }
+    ll;
+    cout << flush;
+    return;
+}
+
+signed main(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+    ios_base::sync_with_stdio(false), cin.tie(NULL);
+    int t=1;
+    cin>>t;
+    for(int i=0;i<t;i++){
+        // cout<<"Case #"<<i+1<<": "; 
+       solve();
+    }
+}
