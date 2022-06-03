@@ -1,0 +1,61 @@
+void dfs(vector<vector<char>>& arr, string str, int i, int j, bool& found, int index, int dir){
+        if(i<0 or i>=arr.size() or j<0 or j>=arr[0].size() or arr[i][j] != str[index]){
+            return ;
+        }
+        if(index >= str.length()-1 or found){
+            found = true;
+            return ;
+        }
+        if(dir == 1){
+            dfs(arr, str, i+1, j, found, index+1, dir);
+        }
+        else if(dir == 2){
+            dfs(arr, str, i, j+1, found, index+1, dir);
+        }
+        else if(dir == 3){
+            dfs(arr, str, i-1, j, found, index+1, dir);
+        }
+        else if(dir == 4){
+            dfs(arr, str, i, j-1, found, index+1, dir);
+        }
+        else if(dir == 5){
+            dfs(arr, str, i+1, j+1, found, index+1, dir);
+        }
+        else if(dir == 6){
+            dfs(arr, str, i+1, j-1, found, index+1, dir);
+        }
+        else if(dir == 7){
+            dfs(arr, str, i-1, j+1, found, index+1, dir);
+        }
+        else if(dir == 8){
+            dfs(arr, str, i-1, j-1, found, index+1, dir);
+        }
+    }
+
+	vector<vector<int>>searchWord(vector<vector<char>>arr, string str){
+	    vector<vector<int>> ans;
+	    set<vector<int>> res;
+	    int n = arr.size(), m = arr[0].size();
+	    for(int i=0; i<n; i++){
+	        for(int j=0; j<m; j++){
+	            bool found = false;
+	            if(arr[i][j] == str[0]){
+	                dfs(arr, str, i, j, found, 0, 1);
+	                dfs(arr, str, i, j, found, 0, 2);
+	                dfs(arr, str, i, j, found, 0, 3);
+	                dfs(arr, str, i, j, found, 0, 4);
+	                dfs(arr, str, i, j, found, 0, 5);
+	                dfs(arr, str, i, j, found, 0, 6);
+	                dfs(arr, str, i, j, found, 0, 7);
+	                dfs(arr, str, i, j, found, 0, 8);
+	                if(found){
+	                    res.insert({i, j});
+	                }
+	            }
+	        }
+	    }
+	    for(auto it: res){
+	        ans.push_back(it);
+	    }
+	    return ans;
+	}
